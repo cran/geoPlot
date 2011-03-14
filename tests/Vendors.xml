@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<RECORDS>
+   <RECORD>
+      <Key>Vnd0001</Key>
+      <StAddress>2066 James Ave            </StAddress>
+      <City>Madison             </City>
+      <State>NY   </State>
+      <ZipCode>13402  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0002</Key>
+      <StAddress>3812 St James Dr          </StAddress>
+      <City>Shippensburg        </City>
+      <State>PA   </State>
+      <ZipCode>17257  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0003</Key>
+      <StAddress>460 Shinn St              </StAddress>
+      <City>New York            </City>
+      <State>NY   </State>
+      <ZipCode>10281  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0004</Key>
+      <StAddress>8111 Olen Thomas Dr, Ste. E</StAddress>
+      <City>Rosston             </City>
+      <State>TX   </State>
+      <ZipCode>76263  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0005</Key>
+      <StAddress>4163 Kenwood Pl        </StAddress>
+      <City>Jupiter             </City>
+      <State>FL   </State>
+      <ZipCode>33478  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0006</Key>
+      <StAddress>4670 Pointe Ln            </StAddress>
+      <City>Pompano Beach       </City>
+      <State>FL   </State>
+      <ZipCode>33060  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0007</Key>
+      <StAddress>2704 Gambler Ln           </StAddress>
+      <City>Houston             </City>
+      <State>TX   </State>
+      <ZipCode>77060  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0008</Key>
+      <StAddress>4620 Short St             </StAddress>
+      <City>Austin              </City>
+      <State>TX   </State>
+      <ZipCode>78701  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0009</Key>
+      <StAddress>4077 Marigold             </StAddress>
+      <City>Miami               </City>
+      <State>FL   </State>
+      <ZipCode>33179  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0010</Key>
+      <StAddress>3933 Arbutus Dr        </StAddress>
+      <City>Hialeah             </City>
+      <State>FL   </State>
+      <ZipCode>33012  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0011</Key>
+      <StAddress>11179 Stiles St        </StAddress>
+      <City>Portland            </City>
+      <State>PA   </State>
+      <ZipCode>97205  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0012</Key>
+      <StAddress>2966 Charla Ln          </StAddress>
+      <City>Dallas              </City>
+      <State>TX   </State>
+      <ZipCode>75287  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0013</Key>
+      <StAddress>1235 Westwood Ave     </StAddress>
+      <City>Garden City         </City>
+      <State>NY   </State>
+      <ZipCode>11530  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0014</Key>
+      <StAddress>3371 My Dr             </StAddress>
+      <City>New York            </City>
+      <State>NY   </State>
+      <ZipCode>10013  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0015</Key>
+      <StAddress>1116 Cedar St          </StAddress>
+      <City>Butler              </City>
+      <State>PA   </State>
+      <ZipCode>16001  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0016</Key>
+      <StAddress>558 Renwick Dr         </StAddress>
+      <City>Philadelphia        </City>
+      <State>PA   </State>
+      <ZipCode>19103  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0017</Key>
+      <StAddress>2485 Birch  St        </StAddress>
+      <City>El Paso             </City>
+      <State>TX   </State>
+      <ZipCode>79930  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0018</Key>
+      <StAddress>1453 Watson Ln          </StAddress>
+      <City>Smithsons Valley    </City>
+      <State>TX   </State>
+      <ZipCode>78130  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0019</Key>
+      <StAddress>496 Rhythm St       </StAddress>
+      <City>Gainesville         </City>
+      <State>FL   </State>
+      <ZipCode>32607  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0020</Key>
+      <StAddress>3443 Patterson Road       </StAddress>
+      <City>Elmhurst            </City>
+      <State>NY   </State>
+      <ZipCode>11373  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0021</Key>
+      <StAddress>568 Clair St          </StAddress>
+      <City>Bluffdale           </City>
+      <State>TX   </State>
+      <ZipCode>76433  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0022</Key>
+      <StAddress>2708 Grant St         </StAddress>
+      <City>Bullard             </City>
+      <State>TX   </State>
+      <ZipCode>75762  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0023</Key>
+      <StAddress>4435 Thrash Trail         </StAddress>
+      <City>Palestine           </City>
+      <State>TX   </State>
+      <ZipCode>12345  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0024</Key>
+      <StAddress>4890 Terry Ln           </StAddress>
+      <City>Orlando             </City>
+      <State>FL   </State>
+      <ZipCode>32801  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0025</Key>
+      <StAddress>4301 Mapleview Dr      </StAddress>
+      <City>Hudson              </City>
+      <State>FL   </State>
+      <ZipCode>34669  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0026</Key>
+      <StAddress>2992 Michigan Ave     </StAddress>
+      <City>New Castle          </City>
+      <State>PA   </State>
+      <ZipCode>16101  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0027</Key>
+      <StAddress>3457 Burwell Heights Road </StAddress>
+      <City>Nederland           </City>
+      <State>TX   </State>
+      <ZipCode>77627  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0028</Key>
+      <StAddress>3574 High Meadow Ln     </StAddress>
+      <City>Mount Pleasant Mills</City>
+      <State>PA   </State>
+      <ZipCode>17853  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0029</Key>
+      <StAddress>1307 Coal Road            </StAddress>
+      <City>Valley View         </City>
+      <State>PA   </State>
+      <ZipCode>17983  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0030</Key>
+      <StAddress>965 Formula Ln          </StAddress>
+      <City>Houston             </City>
+      <State>TX   </State>
+      <ZipCode>77060  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0031</Key>
+      <StAddress>3646 Stoney Ln          </StAddress>
+      <City>Plano               </City>
+      <State>TX   </State>
+      <ZipCode>75075  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0032</Key>
+      <StAddress>1694 Hanover St       </StAddress>
+      <City>Garden City         </City>
+      <State>NY   </State>
+      <ZipCode>11530  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0033</Key>
+      <StAddress>3303 Coolidge St      </StAddress>
+      <City>Orlando             </City>
+      <State>FL   </State>
+      <ZipCode>32801  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0034</Key>
+      <StAddress>1307 Fidler Dr         </StAddress>
+      <City>San Antonio         </City>
+      <State>TX   </State>
+      <ZipCode>78240  </ZipCode>
+   </RECORD>
+   <RECORD>
+      <Key>Vnd0035</Key>
+      <StAddress>829 Redbud Dr          </StAddress>
+      <City>Rego Park Queens    </City>
+      <State>NY   </State>
+      <ZipCode>11734  </ZipCode>
+   </RECORD>
+</RECORDS>
