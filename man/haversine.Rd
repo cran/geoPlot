@@ -1,55 +1,67 @@
 \name{haversine}
 \alias{haversine}
-\title{Calculates Distance Between Points}
+\title{haversine}
 \description{
-	The haversine formula calculates distance between 2 points of latitude
-	and longitude.  This implementation uses a single data frame containing
-	the points to return a column with the distance in km.  note:  It is
-	strongly recommended to run this from the geoCompare function as this is
-	written specifically as a support function.  This implementation is not 
-	intended to run stand alone.
-}
-\usage{
-haversine(x)
+This is the haversine formula for determining distance between coordinated on a globe.
 }
 \arguments{
-  \item{x}{x is the data frame containing the 2 points}
+  \item{xLat}{Position 1 latitude.}
+  \item{xLon}{Position 1 longitude.}
+  \item{yLat}{Position 2 latitude.}
+  \item{yLon}{Position 2 longitude.}
 }
 \details{
-	NOTE:  This is a support function and this implementation is not 
-	intended to run stand alone.
+The haversine function uses the degrees2radians function during computation.
 }
 \value{
-	The returned value is a column containing the distance between 2 point
-	coordinated expressed in km.
+The output is a list with the coordinates, distance in kilometers and miles.
+  \item{xLat}{Position 1 latitude.}
+  \item{xLon}{Position 1 longitude.}
+  \item{yLat}{Position 2 latitude.}
+  \item{yLon}{Position 2 longitude.}
+  \item{distKm}{Distance between points in kilometers.}
+  \item{distMi}{Distance between points in miles.}
 }
 \references{
-	http://www.codecodex.com/wiki/Calculate_distance_between_two_points_on_a_globe
-	http://www.ig.utexas.edu/outreach/googleearth/latlong.html
+http://en.wikipedia.org/wiki/Haversine_formula
+http://www.movable-type.co.uk/scripts/latlong.html
+http://www.platoscave.net/blog/2009/oct/5/calculate-distance-latitude-longitude-python/
 }
 \author{
-  Randall Shane, PhD \email{rshane@basexvi.com}
+Randall Shane, PhD
+rshane@basexvi.com
 }
-\note{}
+\note{
+There is some variation between computations due to the measurement used for the Earth's radius.  This implementation uses the mean radius measurement of 6371 km versus the equitorial radius of 6378.  Feel free to adjust if your opinion differs!
+}
+\seealso{
+  \code{\link{degrees2radians}},
+  \code{\link{geoAddress}},
+  \code{\link{geoIP}}
+}
 \examples{
-## 	NOTE:  This is a support function and this implementation is not 
-##  intended to run stand alone.
+#haversine("28.54703","-81.30292","26.93422","-80.09421")
 
 ## The function is currently defined as
-function(x){
-earthR <- 6371
-mLat <- as.double(x[10])
-bLat <- as.double(x[19])
-mLong <- as.double(x[9])
-bLong <- as.double(x[18])
-changeLat <- degrees2radians(mLat - bLat)
-changeLong <- degrees2radians(mLong - mLong)
-a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
-c <- 2 * asin(sqrt(a))
-distKm <- earthR * c
-return(distKm)}
+function (xLat, xLon, yLat, yLon) 
+{
+    earthR <- 6371
+    mLat <- as.double(xLat)
+    bLat <- as.double(yLat)
+    mLong <- as.double(xLon)
+    bLong <- as.double(yLon)
+    changeLat <- degrees2radians(mLat - bLat)
+    changeLong <- degrees2radians(mLong - mLong)
+    a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * 
+        cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
+    c <- 2 * atan2(sqrt(a), sqrt(1 - a))
+    distKm <- earthR * c
+    distMi <- as.double(distKm * 0.621371192)
+    output <- c(xLat, xLon, yLat, yLon, distKm, distMi)
+    return(output)
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{distance}
 \keyword{haversine}
-

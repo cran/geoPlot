@@ -1,14 +1,15 @@
 haversine <-
-function(x){
-	earthR <- 6371
-	mLat <- as.double(x[10])
-	bLat <- as.double(x[19])
-	mLong <- as.double(x[9])
-	bLong <- as.double(x[18])
-	changeLat <- degrees2radians(mLat - bLat)
-	changeLong <- degrees2radians(mLong - mLong)
-	a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
-	c <- 2 * asin(sqrt(a))
-	distKm <- earthR * c
-	return(distKm)}
-
+function(xLat,xLon,yLat,yLon){
+  earthR <- 6371 #using mean radius
+  mLat <- as.double(xLat)
+  bLat <- as.double(yLat)
+  mLong <- as.double(xLon)
+  bLong <- as.double(yLon)
+  changeLat <- degrees2radians(mLat - bLat)
+  changeLong <- degrees2radians(mLong - mLong)  
+  a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
+  c <- 2 * atan2(sqrt(a), sqrt(1-a))
+  distKm <- earthR * c
+  distMi <- as.double(distKm * 0.621371192)
+  output <- c(xLat,xLon,yLat,yLon,distKm,distMi)
+  return(output)}

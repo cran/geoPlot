@@ -1,37 +1,75 @@
 \name{geoPlot-package}
 \alias{geoPlot-package}
 \docType{package}
-\title{Compares Addresses}
+\title{Geocodes street address or ip address, plots on Google map, determines distance between 2 points.}
 \description{
-	This package compares addresses between data frames by either using an
-	address concatenation algorithm or by resolving latitude and longitude 
-	point coordinates and implementing the haversine formula for distance.
+There are 4 primary functions:
+1) Resolve street address to point and box coordinates.
+2) Resolve ip address to point coordinates.
+3) Plot resolved points on specified Google map.
+4) Determine distance between 2 points in km or mi using haversine formula.
 }
-\details{}
-\author{
-  Randall Shane, PhD \email{rshane@basexvi.com}
+\details{
+\tabular{ll}{
+Package: \tab geoPlot\cr
+Type: \tab Package\cr
+Version: \tab 2.0\cr
+Date: \tab 2012-07-24\cr
+License: \tab GPL-2\cr
 }
-\references{}
-\keyword{geocode}
-\seealso{
+INSTRUCTIONS:
+To geocode and plot a single address:
+x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
+geoPlot(x)
+
+To geocode and plot a list of addresses:
+x <- load("addresses.rda")
+geoAddresses <- addrListLookup(x)
+geoPlot(geoAddresses)
+
+To geocode and plot a single ip address:
+x <- geoIP("38.122.8.198")
+geoPlot(x)
+
+To geocode and plot a list of ip addresses:
+x <- load("ips.rda")
+geoIPs <- ipListLookup(x)
+geoPlot(geoIPs)
+
+To determine the distance between 2 points:
+haversine("28.54703","-81.30292","26.93422","-80.09421")
+
+To determine the distance between 2 points resolved above:
+haversine(geoAddresses[1,3],geoAddresses[1,4],geoAddresses[2,3],geoAddresses[2,4])
+haversine(geoIPs[1,3],geoIPs[1,4],geoIPs[2,3],geoIPs[2,4])
 }
+
+\author{Maintainer: Randall Shane, PhD <rshane@basexvi.com>}
+
+\references{
+http://ipinfodb.com
+http://ipinfodb.com/ip_location_api.php
+http://en.wikipedia.org/wiki/Haversine_formula
+http://www.movable-type.co.uk/scripts/latlong.html
+http://www.platoscave.net/blog/2009/oct/5/calculate-distance-latitude-longitude-python/
+rGoogleMaps
+http://www.google.com/maps
+}
+
+\keyword{geoPlot}
+
 \examples{
-
-# Import Data Files
-# baseData <- csvImport("EPA List.csv")   # Import Base List
-# matchData <- xmlImport("Vendors.xml")  # Import Match List
-
-# Address Concatenation Comparison
-# baseParsed <- addressParse(baseData) # Parse Base list Addresses
-# matchParsed <- addressParse(matchData)  # Parse Match list Addresses
-# parsedMatches <- parseMatch(matchParsed, baseParsed) # Perform the concatenation testing
-
-# Geocoding Comparison
-# matchGeoCoded <- geoCode(matchData)  # Geocode Match Data
-# baseGeoCoded <- geoCode(baseData)  # Geocode Base Data
-# geoComplete <- geoCompare(matchGeoCoded, baseGeoCoded)  # Perform haversine comparison
-
-# Result Visualization
-# basicPlot(geoComplete) # Basic Plot Visualization
-# geoPlot(baseGeoCoded, matchGeoCoded, zoom=5, maptype="satellite") # Satelite Map Visualization
+#x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
+#geoPlot(x)
+#x <- load("addresses.rda")
+#geoAddresses <- addrListLookup(x)
+#geoPlot(geoAddresses)
+#x <- geoIP("38.122.8.198")
+#geoPlot(x)
+#x <- load("ips.rda")
+#geoIPs <- ipListLookup(x)
+#geoPlot(geoIPs)
+#haversine(28.54703,-81.30292,26.93422,-80.09421)
+#haversine(geoAddresses[1,3],geoAddresses[1,4],geoAddresses[2,3],geoAddresses[2,4])
+#haversine(geoIPs[1,3],geoIPs[1,4],geoIPs[2,3],geoIPs[2,4])
 }

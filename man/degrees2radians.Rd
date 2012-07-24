@@ -1,39 +1,35 @@
 \name{degrees2radians}
 \alias{degrees2radians}
-\title{Converts Degrees to Radians
-}
+\title{degrees2radians}
 \description{
-	This function converts degrees to radians.  This is used in the haversine
-	formula and also can be used stand alone.
-}
-\usage{
-degrees2radians(x)
+This is a conversion from degrees to radians for the haversine function.
 }
 \arguments{
-  \item{x}{x is the degree value or data unit containing the degree value}
+  \item{x}{Degrees}
 }
-\details{}
+\details{
+This really is not intended to be used on its own.  If you need to convert degrees to radians, you can.
+}
 \value{
-	The radian value is returned.
+Measurement in radians.
 }
-\references{}
 \author{
-  Randall Shane, PhD \email{rshane@basexvi.com}
+Randall Shane, PhD
+rshane@basexvi.com
 }
-\note{}
 \examples{
-
-(radianValue <- degrees2radians(28.4725452))
-## [1] 0.4969397
-
+#degrees2radians(180)
+#x <- -79.34526
+#degrees2radians(x)
 
 ## The function is currently defined as
-function(x){
-radians <- (x * 0.0174532925)
-return( radians)}
+function (x) 
+{
+    radians <- (x * 0.0174532925)
+    return(radians)
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{degrees}
+\keyword{haversine}
 \keyword{radians}
-

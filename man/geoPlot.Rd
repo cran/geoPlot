@@ -1,57 +1,75 @@
 \name{geoPlot}
 \alias{geoPlot}
-\title{Plots Coordinates on a Map}
+\title{geoPlot}
 \description{
-	This function allows the user to plot coordinates on a map from the geocoded 
-	data tables using the RgoogleMaps package.
-	NOTE:  In version 2.12.2 of R, there is an error in the 'rgdal' dependency
-	package for RgoogleMaps that is currently unresolved for OSX and Unix systems.
-	This will only work in 2.12.2 under windows.  This does function on OSX under 2.12.0
-	One set of coordinates is plotted in red circles and the other in blue triangles.
-}
-\usage{
-geoPlot(x, y, zoom, maptype)
+This function plots either a single or list of latitude/longitude coordinates on a Google Map.
+The RgoogleMaps package is a dependency.
 }
 \arguments{
-  \item{x}{x is geoCoded data frame #1}
-  \item{y}{y is geoCoded data frame #2}
-  \item{zoom}{zoom is the map level, the entire US is zoom=4, guage accordingly}
-  \item{maptype}{options are mobile or satelite}
+  \item{x}{x is a data frame with latitude and longitude in the 3rd and 4th column respectively.  This aligns with the oupput of geoAddress and geoIP.}
+  \item{zoom}{This is the zoom level of the map.  Default is 6, play around to see what works best.}
+  \item{maptype}{This is the type of map.  Options are: roadmap, mobile, satellite, terrain, hybrid, mapmaker-roadmap, mapmaker-hybrid.  See package RgoogleMaps for descriptions.}
+  \item{color}{This is the color for the plotted points.  The default is red.}
 }
-\details{}
+\details{
+A map is specified through the zoom and maptype arguments with the central location of the map being determined by the mean distance or the centers of the coordinates input.  The points are subsequently plotted using the inpur data frame coordinates and represented in the color argument's specified color.}
 \value{
-	The result is a map with coordinated plotted.
+The output is a PNG file map with the plotted coordinates.}
+\references{
+rGoogleMaps
 }
-\references{}
 \author{
-  Randall Shane, PhD \email{rshane@basexvi.com}
+Randall Shane, PhD
+rshane@basexvi.com
 }
-\note{}
-\examples{
-# The example below is commented out but will run once the RgoogleMaps
-# library has been loaded so;
-# library("RgoogleMaps")
-# geoPlot(baseGeoCoded, matchGeoCoded, zoom=4, maptype="mobile")
 
+\seealso{
+  \code{\link{degrees2radians}},
+  \code{\link{geoAddress}},
+  \code{\link{geoIP}},
+  \code{\link{addrListLookup}},
+  \code{\link{ipListLookup}}
+}
+\examples{
+#x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
+#geoPlot(x)
+
+#y <- c("001","202 South Central Avenue","Flagler Beach","FL","32136","US")
+#x <- geoAddress(y)
+#geoPlot(x)
+
+#x <- load("addresses.rda")
+#geoAddresses <- addrListLookup(x)
+#geoPlot(geoAddresses)
+
+#x <- geoIP("38.122.8.198")
+#geoPlot(x)
+
+#y <- "38.122.8.198"
+#x <- geoIP(y)
+#geoPlot(x)
+
+#x <- load("ips.rda")
+#geoIPs <- ipListLookup(x)
+#geoPlot(geoIPs)
 
 ## The function is currently defined as
-function(x, y, zoom, maptype){
-noZeros <- x[abs(x[9]) > 0,]
-center <- c(as.double(mean(noZeros[9])), as.double(mean(noZeros[8])))
-if (is.na(zoom)) zoom <- 6
-if (is.na(maptype)) maptype <- "mobile"
-mapTemp <- GetMap(center=center, zoom=zoom, destfile="MapTemp.png", maptype=maptype)
-blat <- x[,9]
-blong <- x[,8]
-PlotOnStaticMap( mapTemp, blat, blong, destfile="GeoPlot.png", 
-zoom=NULL, size=c(640,640), add=FALSE, GRAYSCALE=FALSE, 
-pch=16, col="red")
-mlat <- y[,9]
-mlong <- y[,8]
-GeoPlot <- PlotOnStaticMap( mapTemp, mlat, mlong, destfile="GeoPlot.png", 
-zoom=NULL, size=c(640,640), add=TRUE, GRAYSCALE=FALSE, 
-pch=17, col="blue")
-return(GeoPlot)}
+function (x, zoom = 6, maptype = "mobile", color = "red") 
+{
+    temp01 <- x[abs(x[3]) > 0, ]
+    center <- c(sapply(temp01[3], mean), sapply(temp01[4], mean))
+    library(RgoogleMaps)
+    mapTemp <- GetMap.bbox(latR = center[1], lonR = center[2], 
+        zoom = zoom, destfile = "MapTemp.png", maptype = maptype)
+    PlotOnStaticMap(mapTemp, lat = temp01[, 3], lon = temp01[, 
+        4], destfile = "GeoPlot.png", zoom = NULL, size = c(640, 
+        640), add = FALSE, GRAYSCALE = FALSE, pch = 16, col = color)
+  }
 }
-
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{geoPlot}
+\keyword{geoCode}
+\keyword{map}
 \keyword{plot}
+\keyword{googleMaps}
