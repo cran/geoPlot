@@ -2,19 +2,17 @@
 \alias{addrListLookup}
 \title{addrListLookup}
 \description{
-This function cleanly runs a list through the geoAddress function for geocoding.
+This function runs a list through the geoAddress function for geocoding.
+}
+\usage{
+addrListLookup(x)
 }
 \arguments{
-  \item{x}{
-x is a list or data frame containing: id, address, city, state/province, postal, country
-The id is simply an identifier.  The remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that id and 4 elements are needed.
-x <- load("addresses.rda")
-addrListLookup(x)
+  \item{x}{A data frame containing: id, address, city, state/province, postal and country.  The id is simply an identifier.  The remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that id and 4 elements are needed.
 }
 }
 \value{
-The returned value is a data frame containing the following elements:
-id, address, latitude (point coordinate), longitude (point coordinate), north box coordinate, south box coordinate, east box coordinate, west box coordinate.
+The returned value is a data frame containing the elements: id, address, latitude (point coordinate), longitude (point coordinate), north box coordinate, south box coordinate, east box coordinate, west box coordinate.
 \item{id}{User defined identifier.  This can be arbitrary}
 \item{address}{Concatenated address data.}
 \item{latitude}{Point coordinate - latitude.}
@@ -25,33 +23,21 @@ id, address, latitude (point coordinate), longitude (point coordinate), north bo
 \item{box_west}{Box coordinate - West.}
 }
 \author{
-Randall Shane, PhD
+Randall Shane, PhD\cr
 rshane@basexvi.com
 }
 \seealso{\code{\link{geoAddress}},
          \code{\link{geoPlot}}}
 \examples{
-#x <- load("addresses.rda")
-#addrListLookup(x)
-
-## The function is currently defined as
-function (x) 
-{
-    y <- data.frame(t(rep(NA, 11)))
-    y <- y[-1, ]
-    colnames(y) <- c("ipAddress", "statusCode", "latitude", "longitude", 
-        "statusMessage", "countryCode", "countryName", "regionName", 
-        "cityName", "zipCode", "timeZone")
-    for (i in 1:nrow(x)) {
-        input <- x[i, ]
-        y <- rbind(y, geoIP(input))
-    }
-    return(y)
-  }
+id <- c('96600016','96600021','96600022','96600025','96600026')
+address <- c('537 LINDEN AVENUE','4163 KENWOOD PLACE',
+      '4670 POINTE LANE','4077 MARIGOLD LANE','193 MULBERRY LANE')
+city <- c('ORLANDO','JUPITER','POMPANO BEACH','MIAMI','JUPITER')
+stateprov <- c('FL','FL','FL','FL','FL')
+postal <- c('32805','33478','33060','33179','33458')
+country <- c('US','US','US','US','US')
+x <- data.frame(id,address,city,stateprov,postal,country)
+addrListLookup(x)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{address}
 \keyword{geoAddress}
-\keyword{geoCode}
-\keyword{geoPlot}

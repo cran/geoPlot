@@ -2,12 +2,13 @@
 \alias{ipListLookup}
 \title{ipListLookup}
 \description{
-This function cleanly runs a list of ip addresses through the geoIP function for geocoding.
+This function geocodes a list of ip addresses.
+}
+\usage{
+ipListLookup(x)
 }
 \arguments{
-  \item{x}{
-x is a list containing ip addresses.
-}
+  \item{x}{x is a list containing ip addresses.}
 }
 \value{
 A data frame is returned containing the following elements:
@@ -24,33 +25,16 @@ A data frame is returned containing the following elements:
 \item{timeZone}{Timezone from ip lookup.}
 }
 \author{
-Randall Shane, PhD
+Randall Shane, PhD\cr
 rshane@basexvi.com
 }
 \seealso{\code{\link{geoIP}},
          \code{\link{geoPlot}}}
 \examples{
-#x <- load("ips.rda")
-#ipListLookup(x)
-
-## The function is currently defined as
-function (x) 
-{
-    y <- data.frame(t(rep(NA, 11)))
-    y <- y[-1, ]
-    colnames(y) <- c("ipAddress", "statusCode", "latitude", "longitude", 
-        "statusMessage", "countryCode", "countryName", "regionName", 
-        "cityName", "zipCode", "timeZone")
-    for (i in 1:nrow(x)) {
-        input <- x[i, ]
-        y <- rbind(y, geoIP(input))
-    }
-    return(y)
-  }
+ips <- c('108.128.64.50','108.223.56.106','108.230.22.18','108.231.204.187','108.66.55.227')
+x <- data.frame(ips)
+x
+ipListLookup(x)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{ipaddress}
 \keyword{geoIP}
-\keyword{geoCode}
-\keyword{geoPlot}

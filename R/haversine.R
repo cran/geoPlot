@@ -6,7 +6,7 @@ function(xLat,xLon,yLat,yLon){
   mLong <- as.double(xLon)
   bLong <- as.double(yLon)
   changeLat <- degrees2radians(mLat - bLat)
-  changeLong <- degrees2radians(mLong - mLong)  
+  changeLong <- degrees2radians(mLong - bLong)  
   a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
   c <- 2 * atan2(sqrt(a), sqrt(1-a))
   distKm <- earthR * c

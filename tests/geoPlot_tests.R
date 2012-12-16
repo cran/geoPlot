@@ -1,35 +1,163 @@
 # geoPlot Test Script
 # dev by Randall Shane, PhD
 # rshane@basexvi.com
-# 24 July 2012
+# 16 December 2012
 
 rm(list= ls(all=TRUE))
-# install.packages("geoPlot",dependencies=TRUE)
-library(geoPlot)
+#install.packages("geoPlot",dependencies=TRUE)
+#library(geoPlot)
+
+#Functions:
+geoAddress <-
+  function(x) {
+    y <- data.frame(t(rep(NA,8)))
+    y <- y[-1,]
+    colnames(y) <- c("id","address","latitude","longitude","box_north","box_south","box_east","box_west")
+    temp00 <- data.frame(lapply(x[2:5],as.character), stringsAsFactors=FALSE)
+    y[1,1] <- x[1]
+    temp01 <- paste("http://maps.google.com/maps/geo?q=",
+                    paste(gsub(" ","+",temp00),collapse="+"),
+                    "&output=xml&key=$key", sep="", collapse=NULL)
+    y[1,2] <- paste(temp00,collapse=" ")
+    temp02 <- readLines(temp01)
+    temp03 <- grep("coordinates", temp02)[1]
+    temp04 <- substr( temp02[temp03], 25, 47)
+    if(!is.na(temp04[1])) temp05 <- temp04[1] else temp05 <- "0,0"
+    temp06 <- strsplit(temp05, ",")
+    temp07 <- grep("LatLonBox",temp02)[1]
+    temp08 <- gsub('"','',as.character(temp02[temp07]))
+    temp09 <- unlist(strsplit(as.character(temp08)," "))  
+    if(!is.na(as.double(unlist( strsplit(as.character(temp06), "\""))[4]))){
+      lat <- as.double(unlist( strsplit(as.character(temp06), "\""))[4])
+    } else { lat <- 0 }
+    y[1,3] <- lat  
+    if(!is.na(as.double(unlist( strsplit(as.character(temp06), "\""))[2]))){
+      long <- as.double(unlist( strsplit(as.character(temp06), "\""))[2])
+    } else { long <- 0 }
+    y[1,4] <- long
+    if(!is.na(as.double(unlist( strsplit(as.character(temp09[8]), "="))[2]))){
+      box_north <- as.double(unlist( strsplit(as.character(temp09[8]), "="))[2])
+    } else { box_north <- 0}
+    y[1,5] <- box_north
+    if(!is.na(as.double(unlist( strsplit(as.character(temp09[9]), "="))[2]))){
+      box_south <- as.double(unlist( strsplit(as.character(temp09[9]), "="))[2])
+    } else { box_south = 0 }
+    y[1,6] <- box_south
+    if(!is.na(as.double(unlist( strsplit(as.character(temp09[10]), "="))[2]))){
+      box_east <- as.double(unlist( strsplit(as.character(temp09[10]), "="))[2])
+    } else { box_east <- 0 }
+    y[1,7] <- box_east
+    if(!is.na(as.double(unlist( strsplit(as.character(temp09[11]), "="))[2]))){
+      box_west <- as.double(unlist( strsplit(as.character(temp09[11]), "="))[2])
+    } else {box_west <- 0 }
+    y[1,8] <- box_west
+    return(y)}
+
+addrListLookup <-
+  function(x){
+    y <- data.frame(t(rep(NA,8)))
+    colnames(y) <- c("id","address","latitude","longitude","box_north","box_south","box_east","box_west")
+    y <- y[-1,]
+    for (i in 1:nrow(x)) {
+      input <- x[i,]
+      y <- rbind(y,geoAddress(input))}
+    return(y)}
+
+geoIP <-
+  function(x){
+    options(warn=-1)
+    y <- data.frame(t(rep(NA,11)))
+    y <- y[-1,]
+    colnames(y) <- c("ipAddress","statusCode","latitude","longitude","statusMessage","countryCode","countryName","regionName","cityName","zipCode","timeZone")
+    library(rjson)
+    temp01 <- paste("http://api.ipinfodb.com/v3/ip-city/?key=6c8674baa7ea5e3be60472a0cecc7e874fe7be450e83a265c9be67ce8a847e71&ip=",x,"&format=json",sep="",collapse=NULL)
+    temp02 <- fromJSON(paste(readLines(temp01), collapse=""))
+    y[1,1] <- temp02[3]
+    y[1,2] <- temp02[1]
+    if(!is.na(as.double(temp02[9]))){
+      y[1,3] <- as.double(unlist( temp02[9]))
+    } else {  y[1,3] <- 0 }
+    if(!is.na(as.double(temp02[10]))){
+      y[1,4] <- as.double(unlist( temp02[10]))
+    } else {  y[1,4] <- 0 }
+    y[1,5] <- temp02[2]
+    y[1,6] <- temp02[4]
+    y[1,7] <- temp02[5]
+    y[1,8] <- temp02[6]
+    y[1,9] <- temp02[7]
+    y[1,10] <- temp02[8]
+    y[1,11] <- temp02[11]
+    return(y)}
+
+ipListLookup <-
+  function(x){
+    y <- data.frame(t(rep(NA,11)))
+    y <- y[-1,]
+    colnames(y) <- c("ipAddress","statusCode","latitude","longitude","statusMessage","countryCode","countryName","regionName","cityName","zipCode","timeZone")
+    for (i in 1:nrow(x)) {
+      input <- x[i,]
+      y <- rbind(y,geoIP(input))}
+    return(y)}
+
+geoPlot <-
+  function(x, zoom=6, maptype="mobile", color="red"){
+    temp01 <- x[abs(x[3]) > 0,]
+    center <- c(sapply(temp01[3],mean), sapply(temp01[4],mean))
+    library(RgoogleMaps)
+    mapTemp <- GetMap.bbox(latR=center[1], lonR=center[2], zoom=zoom, destfile="MapTemp.png", maptype=maptype)
+    PlotOnStaticMap( mapTemp, lat=temp01[,3], lon=temp01[,4], destfile="GeoPlot.png", 
+                     zoom=NULL, size=c(640,640), add=FALSE, GRAYSCALE=FALSE, 
+                     pch=16, col=color)}
+
+degrees2radians <-
+  function(x){
+    radians <- (x * 0.0174532925)
+    return( radians)}
+
+haversine <-
+  function(xLat,xLon,yLat,yLon){
+    earthR <- 6371 #using mean radius
+    mLat <- as.double(xLat)
+    bLat <- as.double(yLat)
+    mLong <- as.double(xLon)
+    bLong <- as.double(yLon)
+    changeLat <- degrees2radians(mLat - bLat)
+    changeLong <- degrees2radians(mLong - bLong)  
+    a <- sin(changeLat/2) * sin(changeLat/2) + cos(degrees2radians(mLat)) * cos(degrees2radians(bLat)) * sin(changeLong/2) * sin(changeLong/2)
+    c <- 2 * atan2(sqrt(a), sqrt(1-a))
+    distKm <- earthR * c
+    distMi <- as.double(distKm * 0.621371192)
+    output <- c(xLat,xLon,yLat,yLon,distKm,distMi)
+    return(output)}
+
+
+
 
 #To geocode and plot a single address:
 x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
 geoPlot(x)
 
 #To geocode and plot a list of addresses:
-load("addresses.rda")
-geoAddresses <- addrListLookup(head(addresses))
-#geoPlot(geoAddresses)
-geoPlot(geoAddresses,zoom=6,maptype="mobile",color= "red")
-#geoPlot(geoAddresses,zoom=7,maptype="terrain",color="orange")
-#geoPlot(geoAddresses,zoom=5,maptype="satellite",color="yellow")
-#geoPlot(geoAddresses,zoom=6,maptype="hybrid")
+id <- c('96600016','96600021','96600022','96600025','96600026')
+address <- c('537 LINDEN AVENUE','4163 KENWOOD PLACE','4670 POINTE LANE','4077 MARIGOLD LANE','193 MULBERRY LANE')
+city <- c('ORLANDO','JUPITER','POMPANO BEACH','MIAMI','JUPITER')
+stateprov <- c('FL','FL','FL','FL','FL')
+postal <- c('32805','33478','33060','33179','33458')
+country <- c('US','US','US','US','US')
+addresses <- data.frame(id,address,city,stateprov,postal,country)
+
+geoAddresses <- addrListLookup(addresses)
+geoPlot(geoAddresses,zoom=6,maptype="hybrid",color="red")
 
 #To geocode and plot a single ip address:
 y <- geoIP("38.122.8.198")
 geoPlot(y)
 
 #To geocode and plot a list of ip addresses:
-load("ips.rda")
-geoIPs <- ipListLookup(head(ips))
+x <- c('108.128.64.50','108.223.56.106','108.230.22.18','108.231.204.187','108.66.55.227')
+ips <- data.frame(x)
+geoIPs <- ipListLookup(ips)
 geoPlot(geoIPs,zoom=3,maptype="roadmap",color="blue")
-#geoPlot(geoIPs,zoom=1,maptype="mapmaker-roadmap",color="green")
-#geoPlot(geoIPs,zoom=2,maptype="mapmaker-hybrid",color="purple")
 
 
 #To determine the distance between 2 points:
