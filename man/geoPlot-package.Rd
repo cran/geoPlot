@@ -13,8 +13,8 @@ There are 4 primary functions:\cr
 \tabular{ll}{
 Package: \tab geoPlot\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2012-12-16\cr
+Version: \tab 2.2\cr
+Date: \tab 2012-03-31\cr
 License: \tab GPL-2\cr
 }
 INSTRUCTIONS:\cr

@@ -8,19 +8,15 @@ This function runs a list through the geoAddress function for geocoding.
 addrListLookup(x)
 }
 \arguments{
-  \item{x}{A data frame containing: id, address, city, state/province, postal and country.  The id is simply an identifier.  The remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that id and 4 elements are needed.
+  \item{x}{A data frame containing: id, address, city, state/province, postal and country.  The id is simply an identifier.  The remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that an id field and 4 elements are needed.
 }
 }
 \value{
-The returned value is a data frame containing the elements: id, address, latitude (point coordinate), longitude (point coordinate), north box coordinate, south box coordinate, east box coordinate, west box coordinate.
+The returned value is a data frame containing the elements: id, address, latitude, longitude (both point coordinates).
 \item{id}{User defined identifier.  This can be arbitrary}
 \item{address}{Concatenated address data.}
-\item{latitude}{Point coordinate - latitude.}
-\item{longitude}{Point coordinate - longitude.}
-\item{box_north}{Box coordinate - North.}
-\item{box_south}{Box coordinate - South.}
-\item{box_east}{Box coordinate - East.}
-\item{box_west}{Box coordinate - West.}
+\item{latitude}{latitude}
+\item{longitude}{longitude}
 }
 \author{
 Randall Shane, PhD\cr

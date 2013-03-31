@@ -2,30 +2,26 @@
 \alias{geoAddress}
 \title{geoAddress}
 \description{
-Implements a lookup using the Google Maps API to determine point and box coordinates for a given address.
+Implements a lookup using the revised March 2013 Google Maps API to determine point coordinates for a given address.
 }
 \usage{
 geoAddress(x)
 }
 \arguments{
-  \item{x}{x is a list or data frame containing: id, address, city, state/province, postal & country.  The id is simply an identifier field and the remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that id and 4 elements are needed.
+  \item{x}{x is a list or data frame containing: id, address, city, state/province, postal & country.  The id is simply an identifier field and the remaining address elements do not have to be universally populated.  A concatenation of the vector elements occurs but the input specification is only rigid in that an id field and 4 elements are needed.
 }
 }
 \details{
 The GoogleMaps API is interfaced by rendering an address via URL in the following format:\cr
-PATTERN:  http://maps.google.com/maps/geo?q=address+city+state+zip+country&output=xml&key=$key\cr
+PATTERN:  http://maps.googleapis.com/maps/api/geocode/xml?address=num+street+city+state+zip+country&sensor=false\cr
 The output is a web page containing the XML document with the data fields which are then ingested.
 }
 \value{
-The returned value is a list containing the elements: id, address, latitude (point coordinate), longitude (point coordinate), north box coordinate, south box coordinate, east box coordinate, west box coordinate.\cr
+The returned value is a list containing the elements: id, address, latitude, longitude (point coordinates).\cr
 \item{id}{User defined identifier.}
 \item{address}{Concatenated address data.}
 \item{latitude}{Point coordinate - latitude.}
 \item{longitude}{Point coordinate - longitude.}
-\item{box_north}{Box coordinate - North.}
-\item{box_south}{Box coordinate - South.}
-\item{box_east}{Box coordinate - East.}
-\item{box_west}{Box coordinate - West.}
 }
 \author{
 Randall Shane, PhD\cr
