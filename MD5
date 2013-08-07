@@ -1,4 +1,4 @@
-9d6290efd675a0b2770e654c8c9955a1 *DESCRIPTION
+c245627589ca36c7ceb7ce0fdbe67e29 *DESCRIPTION
 8b54e5a89fbda3af5e077053d40bec76 *NAMESPACE
 c6896518d26b0eea66c01706ed081735 *R/addrListLookup.R
 84b5415d696916a5bff8aa6850f347f2 *R/degrees2radians.R
@@ -9,10 +9,10 @@ d8df3f04ed13be0e6fa31fdb288af9b0 *R/haversine.R
 2cc3187dbe6589a877aeb748849c12e8 *R/ipListLookup.R
 409b97b50c6fd27f622372919b9ad527 *man/addrListLookup.Rd
 f76a0cd5f02d22c3bcee5e1e20bc9449 *man/degrees2radians.Rd
-19c9a8564e0515d9770d0ad5743eb928 *man/geoAddress.Rd
+65cb87a1b16fa506e5859d05dd010a8a *man/geoAddress.Rd
 b0fcd917fac0bb95aee9de62aadb46cb *man/geoIP.Rd
-3f2c17d88d63255ee29cbbf93af39be5 *man/geoPlot-package.Rd
-b61652b35fffb5e88232e7250850afcc *man/geoPlot.Rd
+ea5695cea5414c88c67947c90aa86f72 *man/geoPlot-package.Rd
+9fae6d4d1b1b681dd761e291765fa18e *man/geoPlot.Rd
 12690fee98d9292e371ceee0a7689aad *man/haversine.Rd
 48408343893d736345f84b5f4907a477 *man/ipListLookup.Rd
-990a9bca8d991f4ffbcdccd10962d025 *tests/geoPlot_tests.R
+b2f573c0819d56c0457d0d42d354fb80 *tests/geoPlot_tests.R

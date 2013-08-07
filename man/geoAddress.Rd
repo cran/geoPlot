@@ -30,7 +30,7 @@ rshane@basexvi.com
 \seealso{\code{\link{addrListLookup}},
          \code{\link{geoPlot}}}
 \examples{
-x <- c("001","202 South Central Avenue","Flagler Beach","FL","32136","US")
+x <- c("001","1600 Pennsylvania Ave","Washington","DC","20006","US")
 geoAddress(x)
 }
 \keyword{address}

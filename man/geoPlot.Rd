@@ -24,7 +24,8 @@ rshane@basexvi.com
   \code{\link{ipListLookup}}
 }
 \examples{
-x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
-geoPlot(x,zoom=6,maptype="mobile",color= "red")
+x1 <- c("001","1600 Pennsylvania Ave","Washington","DC","20006","US")
+x2 <- geoAddress(x1)
+geoPlot(x2,zoom=6,maptype="mobile",color= "red")
 }
 \keyword{geoPlot}

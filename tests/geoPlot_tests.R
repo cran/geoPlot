@@ -15,8 +15,8 @@ addrListLookup <-
     y <- y[-1,]
     for (i in 1:nrow(x)) {
       input <- x[i,]
-      x[1,]#
-      geoAddress(x[1,])#
+      x[1,]
+      geoAddress(x[1,])
       y <- rbind(y,geoAddress(input))}
     return(y)}
 
@@ -135,8 +135,9 @@ ipListLookup <-
 
 
 #To geocode and plot a single address:
-x <- geoAddress(c("001","202 South Central Avenue","Flagler Beach","FL","32136","US"))
-geoPlot(x)
+x1 <- c("001","1600 Pennsylvania Ave","Washington","DC","20006","US")
+x2 <- geoAddress(x1)
+geoPlot(x2)
 
 #To geocode and plot a list of addresses:
 id <- c('96600016','96600021','96600022','96600025','96600026')
